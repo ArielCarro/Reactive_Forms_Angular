@@ -1,0 +1,40 @@
+<h5 class="m-5">Reactive Form</h5>
+
+<form class="m-5 container" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <label  class="form-label">Names</label>
+            <input type="text" class="form-control" placeholder="John" formControlName="nombre">
+            <p *ngIf="formulario.get('nombre')?.errors?.['required']">Este campo es obligatorio</p>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label  class="form-label">Last Name</label>
+            <input type="text" class="form-control" placeholder="Doe" formControlName="apellido">
+            <p *ngIf="formulario.get('apellido')?.errors?.['required']">Este campo es obligatorio</p>
+        </div>
+    </div>
+        <div class="col-md-6">
+            <label  class="form-label">Email address</label>
+            <input type="email" class="form-control" placeholder="johndoe@gmail.com" formControlName="email">
+            <div  class="form-text">We'll never share your email with anyone else.</div>
+            <p *ngIf="formulario.get('email')?.errors?.['required']">Este campo es obligatorio</p>
+            <p *ngIf="formulario.get('email')?.errors?.['email']">Debe ingresar un email</p>
+        </div>
+
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="form-label" >Password</label>
+            <input type="password" class="form-control" formControlName="password">
+            <p *ngIf="formulario.get('password')?.errors?.['required']">Este campo es obligatorio</p>
+            <p *ngIf="formulario.get('password')?.errors?.['minlength']">Debe contener al menos 8 caracteres</p>
+            <p *ngIf="formulario.get('password')?.errors?.['maxlength']">Debe contener como máximo 20 caracteres</p>
+        </div>
+        <div class="col-auto">
+            <span class="form-text ">
+                Must be 8-20 characters long.
+            </span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary m-1">Submit</button>
+    <button type="reset" class="btn btn-danger m-1">Reset</button>
+</form>
